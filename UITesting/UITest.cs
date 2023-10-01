@@ -1,8 +1,9 @@
+using System.Diagnostics;
 using System.Text;
 
 namespace AvaloniaUITestExample.UITesting;
 
-public abstract class UITest
+public abstract partial class UITest
 {
     public string TestName => this.GetType().Name;
     
@@ -12,7 +13,17 @@ public abstract class UITest
 
     private readonly StringBuilder logAppender;
 
-    public UITest() => this.logAppender = new();
+    private readonly Stopwatch stopwatch;
+
+    public int TotalElapsedSeconds => (int) this.stopwatch.Elapsed.TotalSeconds;
+
+    public TimeSpan ElapsedTime => this.stopwatch.Elapsed;
+
+    public UITest()
+    {
+        this.logAppender = new();
+        this.stopwatch = new();
+    }
 
     public void Assert(bool condition)
     {
@@ -23,7 +34,22 @@ public abstract class UITest
         }
     }
 
-    public void Finish() => Successful ??= true;
+    public void Start()
+    {
+        Successful = null;
+        this.stopwatch.Start();
+    }
+
+    public void Finish()
+    {
+        Successful = Successful is null;
+        this.stopwatch.Stop();
+        Teardown();
+    }
+
+    protected virtual void Teardown()
+    {
+    }
 
     public Task Wait(double seconds) => Task.Delay((int)(seconds * 1000));
 
