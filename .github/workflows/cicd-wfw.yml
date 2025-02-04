@@ -31,7 +31,7 @@ jobs:
         $avaloniaMinorVersions = $(${env:AVALONIA_MINOR_VERSIONS}.Split(";") | % { $_.Trim() })
         foreach ($ver in $avaloniaMinorVersions)
         {
-          dotnet restore --configuration Release --nologo --verbosity quiet -p:AvaloniaMinorVersion=$ver
+          dotnet restore --nologo --verbosity quiet -p:AvaloniaMinorVersion=$ver
           if ($LastExitCode -ne 0)
           {
             exit 1;
