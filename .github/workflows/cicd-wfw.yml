@@ -28,15 +28,24 @@ jobs:
     - name: Make packages
       shell: pwsh
       run: |
-        $PSNativeCommandUseErrorActionPreference = $false
-        $ErrorActionPreference = "Stop"
         $avaloniaMinorVersions = $(${env:AVALONIA_MINOR_VERSIONS}.Split(";") | % { $_.Trim() })
         foreach ($ver in $avaloniaMinorVersions)
         {
-          # let's see if it stops execution
           # dotnet restore --configuration Release --nologo --verbosity quiet -p:AvaloniaMinorVersion=$ver
+          # if ($LastExitCode -ne 0)
+          # {
+          #   exit 1;
+          # }          
           dotnet build --no-restore --configuration Release --nologo --verbosity quiet -p:AvaloniaMinorVersion=$ver
+          if ($LastExitCode -ne 0)
+          {
+            exit 1;
+          }
           dotnet pack ./AlexandreHtrb.AvaloniaUITest/AlexandreHtrb.AvaloniaUITest.csproj --nologo --verbosity quiet --configuration Release -p:AvaloniaMinorVersion=$ver
+          if ($LastExitCode -ne 0)
+          {
+            exit 1;
+          }
         }
       env:
         AVALONIA_MINOR_VERSIONS: ${{ inputs.avaloniaMinorVersions }}
@@ -48,6 +57,10 @@ jobs:
         foreach ($filePath in $nupkgs)
         {
           dotnet nuget push $filePath --api-key $env:NUGET_API_KEY --source https://api.nuget.org/v3/index.json
+          if ($LastExitCode -ne 0)
+          {
+            exit 1;
+          }
         }
       env:
         NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
