@@ -12,7 +12,7 @@
 
     <!-- To generate the package: 'dotnet pack -c Release' -->
     <PackageId>AlexandreHtrb.AvaloniaUITest</PackageId>
-    <PackageVersion>$(AvaloniaMinorVersion).0.1</PackageVersion>
+    <PackageVersion>$(AvaloniaMinorVersion).0.2</PackageVersion>
     <Description>Package for making on-screen live UI tests for Avalonia applications.</Description>
     <RepositoryUrl>https://github.com/alexandrehtrb/AlexandreHtrb.AvaloniaUITest.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -28,9 +28,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="$(AvaloniaMinorVersion).*" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="$(AvaloniaMinorVersion).*" />
-    <PackageReference Include="Avalonia.Controls.DataGrid" Version="$(AvaloniaMinorVersion).*" />
+    <PackageReference Include="Avalonia" Version="$(AvaloniaMinorVersion).0" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="$(AvaloniaMinorVersion).0" />
+    <PackageReference Include="Avalonia.Controls.DataGrid" Version="$(AvaloniaMinorVersion).0" />
   </ItemGroup>
 
   <ItemGroup>

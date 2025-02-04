@@ -30,8 +30,8 @@ public static class UITestAssertions
     public static void AssertContainsText(this TextBlock txtBlock, string txt) => AssertCondition(txtBlock.Text?.Contains(txt) == true, "Text should contain: '" + txt + "'.");
     public static void AssertHasIconVisible(this MenuItem menuItem) => AssertCondition(((Image)menuItem.Icon!).IsVisible == true, "Control's icon should be visible.");
     public static void AssertHasIconHidden(this MenuItem menuItem) => AssertCondition(((Image)menuItem.Icon!).IsVisible == false, "Control's icon shouldn't be visible.");
-    public static void AssertComboBoxSelection(this ComboBox cb, ComboBoxItem cbi) => AssertCondition(cb.SelectedItem == cbi, "ComboBox selection doesn't match expectation.");
-    public static void AssertComboBoxSelection(this ComboBox cb, string txt) => AssertHasText(cb, txt);
+    public static void AssertSelection(this ComboBox cb, ComboBoxItem cbi) => AssertCondition(cb.SelectedItem == cbi, "ComboBox selection doesn't match expectation.");
+    public static void AssertSelection(this ComboBox cb, string txt) => AssertHasText(cb, txt);
     public static void AssertNumericValue(this NumericUpDown nud, int val) => AssertCondition(nud.Value is decimal d && ((int)d) == val, $"NumericUpDown value doesn't match expectation: '{val}', actual: '{nud.Value}'");
     public static void AssertBackgroundColor(this Panel panel, string hexColorWithPoundSign) => AssertCondition(panel.Background is SolidColorBrush scb && ToHexString(scb.Color) == hexColorWithPoundSign, "Panel background color doesn't match expectation: " + hexColorWithPoundSign);
     public static void AssertIsChecked(this CheckBox cb) => AssertCondition(cb.IsChecked == true, "CheckBox should be checked.");
