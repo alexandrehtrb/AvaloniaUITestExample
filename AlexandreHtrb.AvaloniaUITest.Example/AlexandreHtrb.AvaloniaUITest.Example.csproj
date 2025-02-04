@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -34,9 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference
-		Include="..\AlexandreHtrb.AvaloniaUITest\AlexandreHtrb.AvaloniaUITest.csproj"
-		Condition="'$(Configuration)'=='Debug' Or '$(UITestsEnabled)' == 'true'" />
+    <ProjectReference Include="..\AlexandreHtrb.AvaloniaUITest\AlexandreHtrb.AvaloniaUITest.csproj" />
     <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
     <PackageReference Include="Avalonia.Desktop" Version="$(AvaloniaVersion)" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="$(AvaloniaVersion)" />
