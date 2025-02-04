@@ -12,7 +12,7 @@
 
     <!-- To generate the package: 'dotnet pack -c Release' -->
     <PackageId>AlexandreHtrb.AvaloniaUITest</PackageId>
-    <PackageVersion>$(AvaloniaMinorVersion).0.0</PackageVersion>
+    <PackageVersion>$(AvaloniaMinorVersion).0.1</PackageVersion>
     <Description>Package for making on-screen live UI tests for Avalonia applications.</Description>
     <RepositoryUrl>https://github.com/alexandrehtrb/AlexandreHtrb.AvaloniaUITest.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
