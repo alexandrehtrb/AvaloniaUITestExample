@@ -13,6 +13,7 @@ The Example project in this repo is a kickstarting template.
 ```xml
 <ItemGroup>
   <PackageReference Include="Avalonia" Version="11.2.3" />
+  <!-- DataGrid is required for the UI tests runner dialog -->
   <PackageReference Include="Avalonia.Controls.DataGrid" Version="11.2.3" />
   
   <!-- The version major and minor should be the same from Avalonia above. -->
