@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <IsTrimmable>true</IsTrimmable>
+    <IsAotCompatible>True</IsAotCompatible>
+    <!-- override this via command-line to build for multiple versions of Avalonia -->
+    <AvaloniaMinorVersion>11.2</AvaloniaMinorVersion>
+
+    <!-- To generate the package: 'dotnet pack -c Release' -->
+    <PackageId>AlexandreHtrb.AvaloniaUITest</PackageId>
+    <PackageVersion>$(AvaloniaMinorVersion).0.0</PackageVersion>
+    <Description>Package for making on-screen live UI tests for Avalonia applications.</Description>
+    <RepositoryUrl>https://github.com/alexandrehtrb/AlexandreHtrb.AvaloniaUITest.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Authors>Alexandre H. T. R. Bonfitto</Authors>
+    <Copyright>AlexandreHTRB</Copyright>
+    <PackageLicenseFile>LICENCE.md</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENCE.md" Pack="true" PackagePath="\" />
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="$(AvaloniaMinorVersion).*" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="$(AvaloniaMinorVersion).*" />
+    <PackageReference Include="Avalonia.Controls.DataGrid" Version="$(AvaloniaMinorVersion).*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="**\*.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <AvaloniaResource Include="**\*.xaml">
+      <SubType>Designer</SubType>
+    </AvaloniaResource>
+  </ItemGroup>
+
+</Project>
