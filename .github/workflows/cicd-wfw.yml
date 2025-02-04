@@ -28,9 +28,13 @@ jobs:
     - name: Make packages
       shell: pwsh
       run: |
+        $PSNativeCommandUseErrorActionPreference = $false
+        $ErrorActionPreference = "Stop"
         $avaloniaMinorVersions = $(${env:AVALONIA_MINOR_VERSIONS}.Split(";") | % { $_.Trim() })
         foreach ($ver in $avaloniaMinorVersions)
         {
+          # let's see if it stops execution
+          # dotnet restore --configuration Release --nologo --verbosity quiet -p:AvaloniaMinorVersion=$ver
           dotnet build --no-restore --configuration Release --nologo --verbosity quiet -p:AvaloniaMinorVersion=$ver
           dotnet pack ./AlexandreHtrb.AvaloniaUITest/AlexandreHtrb.AvaloniaUITest.csproj --nologo --verbosity quiet --configuration Release -p:AvaloniaMinorVersion=$ver
         }
